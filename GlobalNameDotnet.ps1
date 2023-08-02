@@ -12,7 +12,7 @@ param(
 # Modify this if you want to use 
 $CurrentPath = $PSScriptRoot
 Set-Location $CurrentPath
-$ProjectPath = "$CurrentPath\GlobalName"
+$ProjectPath = "$CurrentPath\GlobalNameDotnet"
 $BuildPath = "$ProjectPath\Build"
 
 If (!(Test-Path $BuildPath)) {
@@ -41,12 +41,12 @@ if ([string]::IsNullOrEmpty($license)) {
 # Build project
 Write-Host "`n============================= BUILD PROJECT ============================"
 
-dotnet publish -f="net7.0" -c Release -o $BuildPath GlobalName\GlobalName.csproj
+dotnet publish -f="net7.0" -c Release -o $BuildPath GlobalNameDotnet\GlobalNameDotnet.csproj
 
 # Run project
 if ([string]::IsNullOrEmpty($fullname)) {
-  dotnet $BuildPath\GlobalName.dll --license $license 
+  dotnet $BuildPath\GlobalNameDotnet.dll --license $license 
 }
 else {
-  dotnet $BuildPath\GlobalName.dll --license $license --fullname $fullname 
+  dotnet $BuildPath\GlobalNameDotnet.dll --license $license --fullname $fullname 
 }
