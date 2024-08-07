@@ -30,7 +30,7 @@ And return information of the name such as:
 ## Tested Environments
 - Windows 10 64-bit .NET 7.0, Powershell 5.1
 - Ubuntu Linux 20.04.04 LTS 64-bit .NET 7.0
-- Global Name Cloud API Version 8.4.1.4116
+- Global Name Cloud API Version 8.4.1.4118
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
