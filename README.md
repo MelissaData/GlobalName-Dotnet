@@ -37,8 +37,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Download this project
 ```
-$ git clone https://github.com/MelissaData/GlobalName-Dotnet
-$ cd GlobalName-Dotnet
+git clone https://github.com/MelissaData/GlobalName-Dotnet
+cd GlobalName-Dotnet
 ```
 
 ## Windows
@@ -80,15 +80,15 @@ There are two modes:
 
 	The script will prompt the user for input(s), then use the provided input(s) to call the Cloud API. For example:
 	```
-	$ .\GlobalNameDotnet.ps1
+	.\GlobalNameDotnet.ps1
 	```
 
 - Command Line 
 
 	You can pass a full name and license string into `-fullname` and `-license` parameters respectively to test the Cloud API. For example: 
 	```
-    $ .\GlobalNameDotnet.ps1 -fullname "Raymond Melissa" 
-    $ .\GlobalNameDotnet.ps1 -fullname "Raymond Melissa" -license "<your_license_string>"
+    .\GlobalNameDotnet.ps1 -fullname "Raymond Melissa" 
+    .\GlobalNameDotnet.ps1 -fullname "Raymond Melissa" -license "<your_license_string>"
     ```
 
 This is the expected output from a successful setup for interactive mode:
@@ -138,15 +138,15 @@ There are two modes:
 
 	The script will prompt the user for input(s), then use the provided input(s) to call the Cloud API. For example:
 	```
-	$ ./GlobalNameDotnet.sh
+	./GlobalNameDotnet.sh
 	```
 
 - Command Line 
 
 	You can pass a full name and license string into `--fullname` and `--license` parameters respectively to test the Cloud API. For example: 
 	```
-    $ ./GlobalNameDotnet.sh --fullname "Raymond Melissa" 
-    $ ./GlobalNameDotnet.sh --fullname "Raymond Melissa" --license "<your_license_string>"
+    ./GlobalNameDotnet.sh --fullname "Raymond Melissa" 
+    ./GlobalNameDotnet.sh --fullname "Raymond Melissa" --license "<your_license_string>"
     ```
 
 This is the expected output from a successful setup for interactive mode:
