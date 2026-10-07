@@ -1,7 +1,28 @@
 #!/bin/bash
 
-# Name:    GlobalNameCloudAPI
-# Purpose: Execute the GlobalNameCloudAPI program
+# Builds and runs the Melissa Global Name Cloud API .NET sample.
+#
+# This script builds GlobalNameDotnet with dotnet publish, then runs the resulting
+# executable, passing along the license and (if supplied) the full name.
+#
+# Overall flow:
+#   1. Parse the command-line options below.
+#   2. Resolve the license (--license, then a prompt, then the MD_LICENSE environment variable).
+#   3. Publish GlobalNameDotnet in Release configuration to ./GlobalNameDotnet/Build.
+#   4. Run the built executable: one-shot mode if the full name was supplied,
+#      otherwise interactive mode (the .NET program prompts for it).
+#
+# Options (each takes a value):
+#   --fullname   Full name to parse.
+#   --license    License string. If omitted, the script prompts for it; if the prompt
+#                is left blank, it falls back to MD_LICENSE. Running without --license
+#                always prompts, even when MD_LICENSE is set.
+#
+# Paths are relative to the current directory, so run the script from its own folder.
+#
+# Examples:
+#   ./GlobalNameDotnet.sh --license "your-license"
+#   ./GlobalNameDotnet.sh --fullname "Raymond Melissa" --license "your-license"
 
 ######################### Constants ##########################
 
@@ -13,6 +34,8 @@ NC='\033[0m' # No Color
 fullname=""
 license=""
 
+# Read each --flag and its value. A flag with no value, or whose value starts
+# with "-", is an error. Unrecognized options are ignored.
 while [ $# -gt 0 ] ; do
   case $1 in
     --fullname) 
@@ -39,8 +62,7 @@ while [ $# -gt 0 ] ; do
   shift
 done
 
-# Use the location of the .sh file
-# Modify this if you want to use
+# Build paths are relative to the current directory (not the script's location)
 CurrentPath="$(pwd)"
 ProjectPath="$CurrentPath/GlobalNameDotnet"
 BuildPath="$ProjectPath/Build"
@@ -79,11 +101,12 @@ printf "\n============================= BUILD PROJECT ==========================
 dotnet publish -f="net7.0" -c Release -o "$BuildPath" GlobalNameDotnet/GlobalNameDotnet.csproj
 
 # Run project
+# No full name supplied -> run interactively; otherwise pass it through for one-shot mode.
 if [ -z "$fullname" ];
 then
-    dotnet "$BuildPath"/GlobalNameDotnet.dll --license $license 
+    dotnet "$BuildPath"/GlobalNameDotnet.dll --license "$license"
 else
-    dotnet "$BuildPath"/GlobalNameDotnet.dll --license $license --fullname "$fullname"
+    dotnet "$BuildPath"/GlobalNameDotnet.dll --license "$license" --fullname "$fullname"
 fi
 
 
